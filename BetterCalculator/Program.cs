@@ -4,54 +4,99 @@
     {
         static void Main(string[] args)
         {
+            string userInputOne = "";
+            string userInputTwo = "";
             int numberOne = 0;
             int numberTwo = 0;
-            string userInput = "";
+            bool isValidInput = false;
+            string message = "";
             string operation = "";
 
-            Console.WriteLine("Please Enter the first number: \nor Press Q at any time to quit.");
-            userInput = Console.ReadLine();
-            numberOne = int.Parse(userInput);
-            Console.WriteLine("Please Enter the second number: \nor Press Q at any time to quit.");
-            userInput = Console.ReadLine();
-            numberTwo = int.Parse(userInput);
-
-
-            while (userInput.ToUpper() != "Q")
+            do while (isValidInput == false)
             {
-                Console.WriteLine("Select an operation to perform: \n + for Addition \n - for Subtraction \n * for Multiplication \n / for Division \n or Press Q to quit.");
-                operation = Console.ReadLine();
+                Console.WriteLine("Please enter a number: \nor enter Q anytime to quit.");
+                userInputOne = Console.ReadLine();
 
+                try
+                {
+                    numberOne = int.Parse(userInputOne);
+                    isValidInput = true;
+                    Console.WriteLine("Please enter a second number: ");
+                }
+                catch (Exception ex)
+                {
+                    if (userInputOne == "Q" || userInputOne == "q")
+                    {
+                        message = "Have a nice day!";
+                        isValidInput = false;
+                    }
+                    else
+                    {
+                        message = $"{userInputOne} is not a number";
+                    }
+                }
+
+                userInputTwo = Console.ReadLine();
+
+                try
+                {
+                    numberTwo = int.Parse(userInputTwo);
+                    Console.WriteLine("Select an operation: +, -, *, / \nor enter Q anytime to quit.");
+                    operation = Console.ReadLine();
+                    isValidInput = true;
+                }
+                catch (Exception ex)
+                {
+                    if (userInputTwo == "Q" || userInputTwo == "q")
+                    {
+                        message = "Have a nice day!";
+                        isValidInput = false;
+                    }
+                    else
+                    {
+                        message = $"{userInputTwo} is not a number";
+                    }
+                }
+
+
+            
                 switch (operation)
                 {
-                    case "+":
-                        Console.WriteLine($"The result is: {numberOne + numberTwo}");
-                        break;
-                    case "-":
-                        Console.WriteLine($"The result is: {numberOne - numberTwo}");
-                        break;
-                    case "*":
-                        Console.WriteLine($"The result is: {numberOne * numberTwo}");
-                        break;
-                    case "/":
-                        if (numberTwo != 0)
-                        {
-                            Console.WriteLine($"The result is: {numberOne / numberTwo}");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Error: The result is undefined.");
-                        }
-                        break;
-                    case "Q":
-                    case "q":
-                        userInput = "Q"; // to exit the loop
-                        break;
-                    default:
-                        Console.WriteLine("Invalid operation selected. Please try again.");
-                        break;
+                        case "+":
+                            Console.WriteLine($"{numberOne} + {numberTwo} = {numberOne + numberTwo}");
+                            break;
+                        case "-":
+                            Console.WriteLine($"{numberOne} - {numberTwo} = {numberOne - numberTwo}");
+                            break;
+                        case "*":
+                            Console.WriteLine($"{numberOne} * {numberTwo} = {numberOne * numberTwo}");
+                            break;
+                        case "/":
+                            if (numberTwo != 0)
+                            {
+                                Console.WriteLine($"{numberOne} / {numberTwo} = {numberOne / numberTwo}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error: The result is undefined.");
+                            }
+                            break;
+                        case "Q":
+                        case "q":
+                            userInputOne = "Q"; // to exit the loop
+                            break;
+                        default:
+                            Console.WriteLine("Invalid operation selected. Please try again.");
+                            break;
                 }
-            }
+                Console.WriteLine("Press enter to continue or Q to quit.");
+                
+                if (Console.ReadLine() == "Q" || Console.ReadLine() == "q")
+                {
+                    isValidInput = false;
+                }
+                Console.Clear();
+            } while (userInputOne != "Q" && userInputOne != "q" && userInputTwo != "Q" && userInputTwo != "q");
 
             //pause
             Console.Read();
