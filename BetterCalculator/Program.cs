@@ -10,7 +10,8 @@
 
             Console.WriteLine("Please Enter the first number: \n or Press Q at any time to quit.");
 
-            //
+            //pause
+            Console.Read();
         }
     }
 }
