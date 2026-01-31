@@ -1,4 +1,8 @@
-﻿
+﻿//Kyson Hensley
+//RCET2265
+//Spring 2026
+//BetterCalculator Program
+//https://github.com/kysonhensley/BetterCalculator.git
 
 namespace BetterCalculator
 {
