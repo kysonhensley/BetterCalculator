@@ -8,11 +8,12 @@
             string userInputTwo = "";
             int numberOne = 0;
             int numberTwo = 0;
+            bool userQuit = false;
             bool isValidInput = false;
             string message = "";
             string operation = "";
 
-            do while (isValidInput == false)
+            while (userQuit == false)
             {
                 Console.WriteLine("Please enter a number: \nor enter Q anytime to quit.");
                 userInputOne = Console.ReadLine();
@@ -20,15 +21,15 @@
                 try
                 {
                     numberOne = int.Parse(userInputOne);
-                    isValidInput = true;
-                    Console.WriteLine("Please enter a second number: ");
+                    isValidInput = false;
+
                 }
                 catch (Exception ex)
                 {
                     if (userInputOne == "Q" || userInputOne == "q")
                     {
                         message = "Have a nice day!";
-                        isValidInput = false;
+                        userQuit = true;
                     }
                     else
                     {
@@ -43,14 +44,14 @@
                     numberTwo = int.Parse(userInputTwo);
                     Console.WriteLine("Select an operation: +, -, *, / \nor enter Q anytime to quit.");
                     operation = Console.ReadLine();
-                    isValidInput = true;
+                    userQuit = true;
                 }
                 catch (Exception ex)
                 {
                     if (userInputTwo == "Q" || userInputTwo == "q")
                     {
                         message = "Have a nice day!";
-                        isValidInput = false;
+                        userQuit = false;
                     }
                     else
                     {
@@ -93,13 +94,19 @@
                 
                 if (Console.ReadLine() == "Q" || Console.ReadLine() == "q")
                 {
-                    isValidInput = false;
+                    userQuit = true;
                 }
                 Console.Clear();
-            } while (userInputOne != "Q" && userInputOne != "q" && userInputTwo != "Q" && userInputTwo != "q");
 
-            //pause
-            Console.Read();
+            }
+
+            if (userQuit == true)
+            {
+                   Console.Clear();
+                   Console.WriteLine("Have a nice day!");
+            }
+                //pause
+                Console.Read();
         }
     }
 }
